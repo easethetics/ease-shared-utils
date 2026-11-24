@@ -1,0 +1,56 @@
+{
+  "name": "@easethetics/shared-utils",
+  "version": "0.1.0",
+  "description": "Shared utilities for Easethetics apps: usable from a <script> tag (jsDelivr), Django templates, and bundlers like Next.js.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/easethetics/ease-shared-utils.git"
+  },
+  "type": "module",
+  "main": "./dist/jwt-token-manager.cjs",
+  "module": "./dist/jwt-token-manager.js",
+  "types": "./dist/jwt-token-manager.d.ts",
+  "jsdelivr": "./dist/jwt-token-manager.global.min.js",
+  "unpkg": "./dist/jwt-token-manager.global.min.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/jwt-token-manager.d.ts",
+        "default": "./dist/jwt-token-manager.js"
+      },
+      "require": {
+        "types": "./dist/jwt-token-manager.d.cts",
+        "default": "./dist/jwt-token-manager.cjs"
+      }
+    },
+    "./jwt-token-manager": {
+      "import": {
+        "types": "./dist/jwt-token-manager.d.ts",
+        "default": "./dist/jwt-token-manager.js"
+      },
+      "require": {
+        "types": "./dist/jwt-token-manager.d.cts",
+        "default": "./dist/jwt-token-manager.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "./dist/*.global*.js"
+  ],
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

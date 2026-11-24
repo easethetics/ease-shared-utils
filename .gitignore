@@ -1,0 +1,4 @@
+node_modules/
+*.log
+.DS_Store
+# dist/ is committed on purpose: jsDelivr /gh/ URLs serve files straight from the repo.
